@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://github.com/geejs/gulp-tap"
-
-    >gulp-tap (v0.4.2)</a>
+    <a href="https://github.com/geejs/gulp-tap">gulp-tap (v0.4.2)</a>
 </h1>
 <h4>Easiest way to tap into a pipeline</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.gulp-tap">module gulp-tap</a><ol>
 
@@ -104,12 +97,12 @@
         var stream;
         if (DEBUG) {
           if (!Array.isArray(args)) {
-            throw new Error(&#x22;Args must be an array to `apply` to the filter&#x22;);
+            throw new Error("Args must be an array to `apply` to the filter");
           }
         }
         stream = filter.apply(null, args);
-        stream.on(&#x22;error&#x22;, function(err) {
-          return tapStream.emit(&#x22;error&#x22;, err);
+        stream.on("error", function(err) {
+          return tapStream.emit("error", err);
         });
         stream.write(file);
         return stream;
@@ -128,11 +121,11 @@
         return cb();
       };
     })(this);
-    if (obj instanceof baseStream &#x26;&#x26; !obj._readableState.ended) {
-      obj.on(&#x27;end&#x27;, next);
-      return obj.on(&#x27;data&#x27;, function() {
-        obj.removeListener(&#x27;end&#x27;, next);
-        obj.removeListener(&#x27;data&#x27;, arguments.callee);
+    if (obj instanceof baseStream &amp;&amp; !obj._readableState.ended) {
+      obj.on('end', next);
+      return obj.on('data', function() {
+        obj.removeListener('end', next);
+        obj.removeListener('data', arguments.callee);
         return next();
       });
     } else {
@@ -155,3 +148,4 @@
     ]
 </div>
 </div>
+</body></html>

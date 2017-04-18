@@ -51,7 +51,7 @@
 
         href="https://github.com/geejs/gulp-tap"
 
-    >gulp-tap (v0.1.3)</a>
+    >gulp-tap (v0.4.2)</a>
 </h1>
 <h4>Easiest way to tap into a pipeline</h4>
 <div class="apidocSectionDiv"><a
@@ -61,12 +61,91 @@
 
     <li class="apidocModuleLi"><a href="#apidoc.module.gulp-tap">module gulp-tap</a><ol>
 
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-tap.gulp-tap">
+            function <span class="apidocSignatureSpan"></span>gulp-tap
+            <span class="apidocSignatureSpan">(lambda)</span>
+            </a>
+
+        </li>
+
     </ol></li>
 
 </ol></div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.gulp-tap" id="apidoc.module.gulp-tap">module gulp-tap</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-tap.gulp-tap" id="apidoc.element.gulp-tap.gulp-tap">
+        function <span class="apidocSignatureSpan"></span>gulp-tap
+        <span class="apidocSignatureSpan">(lambda)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">gulp-tap = function (lambda) {
+  var modifyFile, utils;
+  utils = function(tapStream, file) {
+    return {
+
+<span class="apidocCodeCommentSpan">      /*
+       * Routes through another stream. The filter must not be
+       * created. This will create the filter as needed.
+       *
+       * @param filter {stream}
+       * @param args {Array} Array containg arguments to apply to filter.
+       *
+       * @example
+       *   t.through coffee, [{bare: true}]
+       */
+</span>      through: function(filter, args) {
+        var stream;
+        if (DEBUG) {
+          if (!Array.isArray(args)) {
+            throw new Error(&#x22;Args must be an array to `apply` to the filter&#x22;);
+          }
+        }
+        stream = filter.apply(null, args);
+        stream.on(&#x22;error&#x22;, function(err) {
+          return tapStream.emit(&#x22;error&#x22;, err);
+        });
+        stream.write(file);
+        return stream;
+      }
+    };
+  };
+  modifyFile = function(file, enc, cb) {
+    var inst, next, obj;
+    inst = {
+      file: file
+    };
+    obj = lambda(inst.file, utils(this, inst.file), inst);
+    next = (function(_this) {
+      return function() {
+        _this.push(file);
+        return cb();
+      };
+    })(this);
+    if (obj instanceof baseStream &#x26;&#x26; !obj._readableState.ended) {
+      obj.on(&#x27;end&#x27;, next);
+      return obj.on(&#x27;data&#x27;, function() {
+        obj.removeListener(&#x27;end&#x27;, next);
+        obj.removeListener(&#x27;data&#x27;, arguments.callee);
+        return next();
+      });
+    } else {
+      return next();
+    }
+  };
+  return through.obj(modifyFile, function(cb) {
+    return cb();
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
 
 </div>
 
