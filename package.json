@@ -1,7 +1,7 @@
 {
     "author": "kai zhu <kaizhu256@gmail.com>",
     "buildNpmdoc": "gulp-tap",
-    "description": "#### api documentation for  [gulp-tap (v0.4.2)](https://github.com/geejs/gulp-tap)  [![npm package](https://img.shields.io/npm/v/npmdoc-gulp-tap.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-gulp-tap) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-gulp-tap.svg)](https://travis-ci.org/npmdoc/node-npmdoc-gulp-tap)",
+    "description": "#### basic api documentation for  [gulp-tap (v0.4.2)](https://github.com/geejs/gulp-tap)  [![npm package](https://img.shields.io/npm/v/npmdoc-gulp-tap.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-gulp-tap) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-gulp-tap.svg)](https://travis-ci.org/npmdoc/node-npmdoc-gulp-tap)",
     "devDependencies": {
         "electron-lite": "kaizhu256/node-electron-lite#alpha",
         "gulp-tap": "*",
